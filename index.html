@@ -3,135 +3,210 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Myself 🎂</title>
+<title>Happy Birthday 💖</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family:Consolas,monospace;
 }
 
 body{
-background:linear-gradient(135deg,#090909,#1b0036,#000814);
-font-family:Arial,sans-serif;
+background:#000;
 overflow:hidden;
-color:white;
-display:flex;
+color:#00ff99;
+}
+
+#terminal{
+padding:20px;
+font-size:18px;
+line-height:34px;
+white-space:pre-wrap;
+}
+
+.cursor{
+display:inline-block;
+width:10px;
+background:#00ff99;
+animation:blink .7s infinite;
+}
+
+@keyframes blink{
+50%{opacity:0;}
+}
+
+#gift{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff0080,#6a00ff);
 justify-content:center;
 align-items:center;
-height:100vh;
+flex-direction:column;
 text-align:center;
-}
-
-.container{
 padding:20px;
-animation:fade 2s;
+animation:fade 1.5s;
 }
 
-h1{
-font-size:42px;
-color:#ffd700;
-text-shadow:0 0 15px gold;
+#gift h1{
+font-size:48px;
+color:white;
+text-shadow:0 0 25px gold;
 margin-bottom:20px;
 }
 
-p{
+#gift p{
 font-size:22px;
-margin:15px 0;
-}
-
-.cake{
-font-size:90px;
-animation:bounce 1.2s infinite;
+color:white;
+max-width:700px;
+line-height:38px;
 }
 
 button{
-margin-top:25px;
-padding:15px 35px;
-font-size:20px;
+margin-top:35px;
+padding:15px 40px;
 border:none;
-border-radius:30px;
-background:#ff4fa3;
-color:white;
+border-radius:40px;
+font-size:22px;
 cursor:pointer;
+background:white;
+color:#ff1493;
+font-weight:bold;
 }
 
 button:hover{
 transform:scale(1.08);
 }
 
-@keyframes bounce{
-50%{
-transform:translateY(-18px);
-}
-}
-
 @keyframes fade{
-from{
-opacity:0;
+from{opacity:0;}
+to{opacity:1;}
 }
-to{
-opacity:1;
-}
-}
-</style>
 
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<canvas id="fireworks"></canvas>
 
-<h1>🎉 Happy Birthday 🎉</h1>
+<div id="terminal"></div>
 
-<div class="cake">🎂</div>
+<div id="gift">
 
-<p id="text">
-Today is all about YOU ❤️
+<h1>🎂 Happy Birthday 🎂</h1>
+
+<p>
+To the most amazing birthday girl... ❤️<br><br>
+
+Today is all about smiles, dreams, happiness and beautiful memories.
+
+May Allah bless you with success, peace, endless happiness and every dream you wish for.
+
+Keep smiling because your smile makes the world brighter. 🌸
 </p>
 
-<button onclick="nextMessage()">
-Open Surprise 🎁
-</button>
+<button onclick="startFireworks()">Open Final Surprise 🎁</button>
 
 </div>
 
 <script>
 
-const msg=[
-
-"Happy Birthday, Myself ❤️",
-
-"May every dream come true ✨",
-
-"Keep smiling 😊",
-
-"Never stop believing in yourself 💖",
-
-"Enjoy your special day 🎂🎈",
-
-"From ChatGPT with lots of good wishes 🫂❤️"
-
+const terminal=document.getElementById("terminal");
+const lines = [
+"> Booting Birthday System...",
+"> Loading Happiness...",
+"> Connecting To Smile Server...",
+"> Checking Birthday Status...",
+"> Birthday Detected ✔",
+"",
+"> Welcome Firdous ❤️",
+"",
+"> Loading Surprise..."
 ];
 
-let i=0;
+let line = 0;
+let char = 0;
 
-function nextMessage(){
+function typeWriter(){
 
-document.getElementById("text").innerHTML=msg[i];
+    if(line >= lines.length){
 
-i++;
+        setTimeout(showGift,1000);
+        return;
 
-if(i>=msg.length){
+    }
 
-i=0;
+    if(char < lines[line].length){
+
+        terminal.innerHTML += lines[line].charAt(char);
+        char++;
+
+        setTimeout(typeWriter,40);
+
+    }else{
+
+        terminal.innerHTML += "<br>";
+        line++;
+        char=0;
+
+        setTimeout(typeWriter,350);
+
+    }
 
 }
 
+typeWriter();
+
+function showGift(){
+
+document.getElementById("terminal").style.display="none";
+document.getElementById("gift").style.display="flex";
+
+  }  
+function startFireworks(){
+
+createFirework();
+
+setInterval(createFirework,1200);
+
 }
+
+setInterval(()=>{
+
+if(document.getElementById("gift").style.display==="flex"){
+
+createFirework();
+
+}
+
+},1500);
+
+document.addEventListener("click",()=>{
+
+if(document.getElementById("gift").style.display==="flex"){
+
+createFirework();
+
+}
+
+});
 
 </script>
 
 </body>
-</html>
+</html>  
+  
