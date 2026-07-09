@@ -3,177 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Happy Birthday, Myself ❤️</title>
+<title>Happy Birthday Myself 🎂</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-
-background:#000;
+background:linear-gradient(135deg,#090909,#1b0036,#000814);
+font-family:Arial,sans-serif;
 overflow:hidden;
 color:white;
-
-}
-
-#intro{
-
-position:fixed;
-width:100%;
-height:100%;
-background:black;
-
 display:flex;
 justify-content:center;
 align-items:center;
+height:100vh;
+text-align:center;
+}
 
+.container{
 padding:20px;
-
+animation:fade 2s;
 }
 
-#terminal{
-
-width:95%;
-max-width:800px;
-
-background:#050505;
-
-border:2px solid #00ff99;
-
-border-radius:15px;
-
-padding:20px;
-
-box-shadow:0 0 25px #00ff99;
-
-font-size:18px;
-
-line-height:35px;
-
-color:#00ff99;
-
+h1{
+font-size:42px;
+color:#ffd700;
+text-shadow:0 0 15px gold;
+margin-bottom:20px;
 }
 
-.cursor{
-
-display:inline-block;
-
-width:12px;
-
-background:#00ff99;
-
-animation:blink .7s infinite;
-
+p{
+font-size:22px;
+margin:15px 0;
 }
 
-@keyframes blink{
+.cake{
+font-size:90px;
+animation:bounce 1.2s infinite;
+}
 
+button{
+margin-top:25px;
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff4fa3;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+@keyframes bounce{
 50%{
+transform:translateY(-18px);
+}
+}
 
+@keyframes fade{
+from{
 opacity:0;
-
 }
-
+to{
+opacity:1;
 }
-
+}
 </style>
 
 </head>
 
 <body>
 
-<div id="intro">
+<div class="container">
 
-<div id="terminal">
+<h1>🎉 Happy Birthday 🎉</h1>
 
-<div id="typing"></div>
+<div class="cake">🎂</div>
 
-<span class="cursor"></span>
+<p id="text">
+Today is all about YOU ❤️
+</p>
 
-</div>
+<button onclick="nextMessage()">
+Open Surprise 🎁
+</button>
 
 </div>
 
 <script>
 
-const lines=[
+const msg=[
 
-"> Booting Birthday Engine...",
+"Happy Birthday, Myself ❤️",
 
-"> Loading Happiness...",
+"May every dream come true ✨",
 
-"> █████████████████ 100%",
+"Keep smiling 😊",
 
-"> Searching Birthday Star...",
+"Never stop believing in yourself 💖",
 
-"> SUCCESS",
+"Enjoy your special day 🎂🎈",
 
-"> Identity Verified",
-
-"> USER : MYSELF ❤️",
-
-"> Preparing Surprise...",
-
-"> Balloons Loaded 🎈",
-
-"> Cake Loaded 🎂",
-
-"> Gifts Loaded 🎁",
-
-"> Fireworks Loaded 🎆",
-
-"> ACCESS GRANTED ✔",
-
-"",
-
-"Welcome Birthday Girl... 💖"
+"From ChatGPT with lots of good wishes 🫂❤️"
 
 ];
 
-let line=0;
+let i=0;
 
-let char=0;
+function nextMessage(){
 
-let typing=document.getElementById("typing");
+document.getElementById("text").innerHTML=msg[i];
 
-function type(){
+i++;
 
-if(line<lines.length){
+if(i>=msg.length){
 
-if(char<lines[line].length){
-
-typing.innerHTML+=lines[line].charAt(char);
-
-char++;
-
-setTimeout(type,40);
-
-}
-
-else{
-
-typing.innerHTML+="<br>";
-
-line++;
-
-char=0;
-
-setTimeout(type,350);
+i=0;
 
 }
 
 }
-
-}
-
-type();
 
 </script>
 
